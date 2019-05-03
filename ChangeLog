@@ -1,3 +1,6 @@
+2019-05-03         [RELEASE] Release of hellurl 1.0.1 (Vladimir Falcon Piva)
+2019-05-03 ee3e035 [TASK] Fixed PHP Runtime Deprecation Notice: Function create_function() (Vladimir Falcon Piva)
+
 2014-11-04  Dmitry Dulepov  <dmitry.dulepov@gmail.com>
 
 	* Fixed bug #62442: Wrong cropping of multibyte URLs
