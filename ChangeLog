@@ -1,3 +1,6 @@
+2019-06-05         [RELEASE] Release of hellurl 1.0.2 (Vladimir Falcon Piva)
+2019-06-05 4c6b8d5 [TASK] Fix PHP Warning TYPO3_db_host (Vladimir Falcon Piva)
+
 2019-05-03         [RELEASE] Release of hellurl 1.0.1 (Vladimir Falcon Piva)
 2019-05-03 ee3e035 [TASK] Fixed PHP Runtime Deprecation Notice: Function create_function() (Vladimir Falcon Piva)
 
