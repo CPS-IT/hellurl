@@ -29,6 +29,8 @@ namespace Nimut\Hellurl;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -1224,10 +1226,18 @@ class UriGeneratorAndResolver implements SingletonInterface
      * @param int $offsetFromNow Offset to expiration
      *
      * @return int Expiration time stamp
+     * @throws \Doctrine\DBAL\DBALException
      */
     protected function makeExpirationTime($offsetFromNow = 0)
     {
-        if (!\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('adodb') && (TYPO3_db_host == '127.0.0.1' || TYPO3_db_host == 'localhost')) {
+        /** @var ConnectionPool $connectionPool */
+        $connectionPool = GeneralUtility::makeInstance(ConnectionPool::class);
+
+        /** @var  Connection $queryBuilder */
+        $connection = $connectionPool->getConnectionByName('Default');
+
+        $host = $connection->getHost();
+        if (!\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('adodb') && ($host == '127.0.0.1' || $host == 'localhost')) {
             // Same host, same time, optimize
             return $offsetFromNow ? '(UNIX_TIMESTAMP()+(' . $offsetFromNow . '))' : 'UNIX_TIMESTAMP()';
         }
